@@ -1,0 +1,41 @@
+buildscript {
+	ext {
+		springBootVersion = '1.1.6.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		//Manages versions of all spring boot dependencies.
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+	baseName = 'springboot-example'
+	version = '0.0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+dependencies {
+	compile 'org.springframework.boot:spring-boot-starter-data-jpa:1.1.6.RELEASE'
+	compile 'org.springframework.boot:spring-boot-starter-data-rest:1.1.6.RELEASE'
+  compile 'org.springframework.data:spring-data-rest-webmvc:2.2.0.RELEASE'
+	compile("com.h2database:h2")
+
+	testCompile 'org.springframework.boot:spring-boot-starter-test:1.1.6.RELEASE'
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.0'
+}
